@@ -1,5 +1,8 @@
 package pl.pawelgonera.atmotermtask.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -12,6 +15,7 @@ public class ActiveEmployee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double salary;
+    @JsonSerialize(using = ToStringSerializer.class)
     private LocalDate employmentDate;
 
     public ActiveEmployee() {

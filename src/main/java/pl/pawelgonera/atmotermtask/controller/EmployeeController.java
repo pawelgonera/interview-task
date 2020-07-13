@@ -2,18 +2,20 @@ package pl.pawelgonera.atmotermtask.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.pawelgonera.atmotermtask.entity.ActiveEmployee;
 import pl.pawelgonera.atmotermtask.entity.Employee;
-import pl.pawelgonera.atmotermtask.service.EmployeeService;
+import pl.pawelgonera.atmotermtask.service.EmployeeServiceImpl;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
 public class EmployeeController {
 
-    private EmployeeService employeeService;
+    private EmployeeServiceImpl employeeService;
 
-    public EmployeeController(EmployeeService employeeService) {
+    public EmployeeController(EmployeeServiceImpl employeeService) {
         this.employeeService = employeeService;
     }
 
@@ -28,7 +30,11 @@ public class EmployeeController {
 
         Employee newEmployee = employeeService.addEmployee(employee);
 
-        return ResponseEntity.ok(newEmployee);
+        URI location = ServletUriComponentsBuilder
+                        .fromCurrentRequest().path("/{id}")
+                        .buildAndExpand(newEmployee.getId()).toUri();
+
+        return ResponseEntity.created(location).body(newEmployee);
     }
 
     @PutMapping("/employees/{id}")

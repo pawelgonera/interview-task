@@ -12,12 +12,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class EmployeeService {
+public class EmployeeServiceImpl{
 
     private EmployeeRepository employeeRepository;
     private ActiveEmployeeRepository activeEmployeeRepository;
 
-    public EmployeeService(EmployeeRepository employeeRepository, ActiveEmployeeRepository activeEmployeeRepository) {
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository, ActiveEmployeeRepository activeEmployeeRepository) {
         this.employeeRepository = employeeRepository;
         this.activeEmployeeRepository = activeEmployeeRepository;
     }
