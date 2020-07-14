@@ -5,17 +5,17 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.pawelgonera.atmotermtask.entity.ActiveEmployee;
 import pl.pawelgonera.atmotermtask.entity.Employee;
-import pl.pawelgonera.atmotermtask.service.EmployeeServiceImpl;
+import pl.pawelgonera.atmotermtask.service.EmployeeService;
 
 import java.net.URI;
-import java.util.List;
+import java.util.*;
 
 @RestController
 public class EmployeeController {
 
-    private EmployeeServiceImpl employeeService;
+    private EmployeeService employeeService;
 
-    public EmployeeController(EmployeeServiceImpl employeeService) {
+    public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 

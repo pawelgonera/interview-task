@@ -22,9 +22,7 @@ import pl.pawelgonera.atmotermtask.repository.ActiveEmployeeRepository;
 import pl.pawelgonera.atmotermtask.repository.EmployeeRepository;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.mockito.Mockito.*;
@@ -269,4 +267,5 @@ class EmployeeControllerTest {
             e.printStackTrace();
         }
     }
+
 }

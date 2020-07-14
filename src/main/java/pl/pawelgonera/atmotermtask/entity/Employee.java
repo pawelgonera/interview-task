@@ -1,7 +1,9 @@
 package pl.pawelgonera.atmotermtask.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "employees")
@@ -10,11 +12,19 @@ public class Employee{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column(length = 50, nullable = false)
     private String name;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "active_emp_id")
     private ActiveEmployee activeEmployee;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(name = "employees_teams",
+                joinColumns = @JoinColumn(name = "employee_id"),
+                inverseJoinColumns = @JoinColumn(name = "team_id"))
+    private Set<Team> teams = new HashSet<>();
 
     public Employee() {
     }
@@ -41,6 +51,14 @@ public class Employee{
 
     public void setActiveEmployee(ActiveEmployee activeEmployee) {
         this.activeEmployee = activeEmployee;
+    }
+
+    public Set<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(Set<Team> teams) {
+        this.teams = teams;
     }
 
     @Override

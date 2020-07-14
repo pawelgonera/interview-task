@@ -14,7 +14,9 @@ public class ActiveEmployee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Double salary;
+
     @JsonSerialize(using = ToStringSerializer.class)
     private LocalDate employmentDate;
 
