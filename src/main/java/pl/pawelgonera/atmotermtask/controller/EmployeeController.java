@@ -10,6 +10,7 @@ import pl.pawelgonera.atmotermtask.entity.EmployeeXml;
 import pl.pawelgonera.atmotermtask.report.PdfReportFactory;
 import pl.pawelgonera.atmotermtask.report.ReportFactory;
 import pl.pawelgonera.atmotermtask.report.ReportGenerator;
+import pl.pawelgonera.atmotermtask.report.XlsReportFactory;
 import pl.pawelgonera.atmotermtask.service.EmployeeService;
 
 import java.net.URI;
@@ -69,7 +70,10 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/report")
-    public ResponseEntity<String> generateReport(){
+    public ResponseEntity<String> generateReport(@RequestParam Extension extension){
+
+        String message = "File format is not supported!";
+        ReportFactory reportFactory;
 
         List<Employee> employees = employeeService.getAllEmployees(false);
 
@@ -80,9 +84,20 @@ public class EmployeeController {
         EmployeeXml employeeXml = new EmployeeXml();
         employeeXml.setEmployees(employees);
 
-        ReportFactory reportFactory = new PdfReportFactory();
-        ReportGenerator pdfReportGenerator = reportFactory.newReportGenerator();
-        String message = pdfReportGenerator.generateReport(employeeXml);
+        switch(extension){
+            case PDF:
+                reportFactory = new PdfReportFactory();
+                ReportGenerator pdfReportGenerator = reportFactory.newReportGenerator();
+                message = pdfReportGenerator.generateReport(employeeXml);
+                break;
+            case XLS:
+                reportFactory = new XlsReportFactory();
+                ReportGenerator xlsReportGenerator = reportFactory.newReportGenerator();
+                message = xlsReportGenerator.generateReport(employeeXml);
+                break;
+            default:
+                break;
+        }
 
         return ResponseEntity.ok(message);
     }

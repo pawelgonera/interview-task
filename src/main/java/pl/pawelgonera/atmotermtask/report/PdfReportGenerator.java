@@ -29,16 +29,17 @@ public class PdfReportGenerator implements ReportGenerator {
 
         ByteArrayOutputStream xmlSource = getXmlData(employeeData);
 
+
+
         try {
             File xsltTemplate = new File(TEMPLATE_URL);
-
             File directory = new File("./report");
-            if(!directory.exists()){
-                boolean isFileLocationCreated = directory.mkdirs();
-                if(!isFileLocationCreated){
-                    message = "File " + FILE_NAME + " could not be created";
-                    throw new IOException(message);
-                }
+
+            try {
+                directory = createDir(directory, FILE_NAME);
+            }catch (IOException e){
+                message = e.getMessage();
+                e.printStackTrace();
             }
 
             File pdfFile = new File(directory, FILE_NAME);
