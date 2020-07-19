@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<fop version="1.0">
+
+<base>.</base>
+
+<source-resolution>72</source-resolution>
+
+<target-resolution>72</target-resolution>
+
+<default-page-settings height="11.70in" width="8.27in"/>
+
+<renderers>
+    <renderer mime="application/pdf">
+        <filterList>
+
+            <value>flate</value>
+
+        </filterList>
+
+        <fonts>
+
+            <font kerning="yes" embed-url="fonts/calibri.ttf">
+                <font-triplet name="Calibri" style="normal" weight="normal"/>
+            </font>
+
+            <font kerning="yes" embed-url="fonts/calibrib.ttf">
+                <font-triplet name="Calibri" style="normal" weight="bold"/>
+            </font>
+
+            <font kerning="yes" embed-url="fonts/calibrii.ttf">
+                <font-triplet name="Calibri" style="italic" weight="normal"/>
+            </font>
+
+            <font kerning="yes" embed-url="fonts/calibril.ttf">
+                <font-triplet name="Calibri" style="normal" weight="200"/>
+            </font>
+
+            <font kerning="yes" embed-url="fonts/calibrili.ttf">
+                <font-triplet name="Calibri" style="italic" weight="200"/>
+            </font>
+
+            <font kerning="yes" embed-url="fonts/calibriz.ttf">
+                <font-triplet name="Calibri" style="italic" weight="bold"/>
+            </font>
+
+        </fonts>
+
+    </renderer>
+
+</renderers>
+
+</fop>

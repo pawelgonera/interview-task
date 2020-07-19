@@ -1,5 +1,7 @@
 package pl.pawelgonera.atmotermtask.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -20,6 +22,7 @@ public class Employee{
     @JoinColumn(name = "active_emp_id")
     private ActiveEmployee activeEmployee;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "employees_teams",
                 joinColumns = @JoinColumn(name = "employee_id"),

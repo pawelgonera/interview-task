@@ -2,8 +2,10 @@ package pl.pawelgonera.atmotermtask.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import pl.pawelgonera.atmotermtask.util.LocalDateAdapter;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -39,6 +41,7 @@ public class ActiveEmployee {
         this.salary = salary;
     }
 
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     public LocalDate getEmploymentDate() {
         return employmentDate;
     }
